@@ -1,6 +1,5 @@
 import { mutation, query, type QueryCtx, type MutationCtx } from "./_generated/server";
 import { v } from "convex/values";
-import { api } from "./_generated/api";
 import { useUser } from "@/context/UserContext";
 
 // Helper to get authenticated producer user
