@@ -4,6 +4,7 @@ import { SignInButton } from "@clerk/clerk-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { useUser } from "@/context/UserContext";
 
 // Custom RotateLoader component
 const RotateLoader = ({ color = "#059669", size = 8, speedMultiplier = 1 }) => (
@@ -36,7 +37,8 @@ const RotateLoader = ({ color = "#059669", size = 8, speedMultiplier = 1 }) => (
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isLoading, isAuthenticated } = useConvexAuth();
-  const currentUser = useQuery(api.users.getCurrentUser);
+  // const currentUser = useQuery(api.users.getCurrentUser);
+  const {user : currentUser} = useUser();
   const balance = useQuery(api.hydcoin.getBalance);
   const isAdmin = useQuery(
     api.users.isAdminUser,

@@ -130,11 +130,11 @@ export async function getAuthenticatedUser(ctx: QueryCtx | MutationCtx) {
   return currentUser;
 }
 
-export const getCurrentUser = query({
-  handler: async (ctx) => {
-    return await getAuthenticatedUser(ctx);
-  },
-});
+// export const getCurrentUser = query({
+//   handler: async (ctx) => {
+//     return await getAuthenticatedUser(ctx);
+//   },
+// });
 
 export const isCertifierOrAdmin = query({
   handler: async (ctx) => {

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CheckCircle, Clock, XCircle, Loader2, Banknote, Landmark } from "lucide-react";
+import { useUser } from "@/context/UserContext";
 
 // Purchase Component
 const PurchaseTab = () => {
@@ -243,7 +244,8 @@ const WithdrawalHistory = () => {
 
 const WithdrawTab = () => {
   const [activeTab, setActiveTab] = useState("withdraw");
-  const currentUser = useQuery(api.users.getCurrentUser);
+  // const currentUser = useQuery(api.users.getCurrentUser);
+  const {user : currentUser} = useUser();
   const createStripeAccountLink = useAction(api.stripe.createStripeAccountLink);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

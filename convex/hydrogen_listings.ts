@@ -1,6 +1,7 @@
 import { mutation, query, type QueryCtx, type MutationCtx } from "./_generated/server";
 import { v } from "convex/values";
 import { api } from "./_generated/api";
+import { useUser } from "@/context/UserContext";
 
 // Helper to get authenticated producer user
 export async function getAuthenticatedProducer(ctx: QueryCtx | MutationCtx) {
@@ -193,7 +194,8 @@ export const buyHydrogenListing = mutation({
     isPinVerified: v.boolean(), // New argument for client-side verification
   },
   handler: async (ctx, args) => {
-    const buyer = await ctx.runQuery(api.users.getCurrentUser);
+    // const buyer = await ctx.runQuery(api.users.getCurrentUser);
+    const {user : buyer} = useUser();
     if (!buyer) {
       throw new Error("Unauthorized: Buyer not authenticated.");
     }
